@@ -10,10 +10,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['nickname', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
-{
+{   // ユーザは複数のツイートを持つことができる
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    // ユーザは複数のコメントを持つことができる
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
