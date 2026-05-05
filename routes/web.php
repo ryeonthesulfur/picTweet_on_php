@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Route;
 // トップ画面のルート
 Route::get('/', [TweetController::class, 'index']);
 
+// ログインしたユーザーのみがアクセスできる新規投稿のルート
+Route::middleware('auth')->group(function () {                                 
+      Route::get('tweets/create', [TweetController::class, 'create'])->name('tweet.create');
+      Route::post('store', [TweetController::class, 'store'])->name('tweet.store');
+  });
+
 
 // 認証が必要なルート
 Route::get('/dashboard', function () {
