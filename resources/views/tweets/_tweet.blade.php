@@ -1,4 +1,4 @@
-  <div class="content_post" style="background-image: url({{ $tweet->image }});">  
+  <div class="content_post" style="background-image: url({{ asset('storage/' . $tweet->image) }});">  
       <div class="more">                      
           <ul class="more_list">                                                  
               <li>                            
