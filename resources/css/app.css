@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
@@ -473,7 +470,6 @@ ul li {
   margin-top: 0;
   margin-bottom: 0;
   max-width: 660px;
-  *zoom: 1;
 }
 
 .row .grid-1,
@@ -1061,3 +1057,22 @@ footer p {
 .search-form .search-btn {
   width: 10%;
 }
+
+header.header .user_nav ul li button {                                          
+      display: block;                                                             
+      padding: 10px 20px;
+      color: #666;                                                                
+      background: none;
+      border: none;                                                               
+      cursor: pointer;
+      text-align: left;
+      width: 100%;                            
+      font-size: 16px;                    
+      font-family: inherit;
+      border-bottom: 1px solid #d8d8d8;                                           
+  }                                           
+               
+  
+  header.header .user_nav ul li button:hover {
+      color: #57c3e9;                                                             
+  }
