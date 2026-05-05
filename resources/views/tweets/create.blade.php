@@ -1,0 +1,10 @@
+  @extends('layouts.app')
+
+  @section('content')
+  <div class="contents row">
+      <div class="container">
+          <h3>投稿する</h3>
+          @include('tweets._form')
+      </div>
+  </div>
+  @endsection
