@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Route;
 // トップ画面のルート
 Route::get('/', [TweetController::class, 'index']);
 
+
 // 認証が必要なルート
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// 認証が必要なルートをグループ化
+
+// 認証が必要なルートをグループ化（ユーザー管理）
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

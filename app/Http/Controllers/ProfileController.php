@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Update the user's profile information.（プロフィール情報を更新する）
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -37,6 +37,7 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    
     /**
      * Delete the user's account.
      */
