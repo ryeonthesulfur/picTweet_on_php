@@ -5,22 +5,16 @@ use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 // トップ画面のルート
-Route::get('/', [TweetController::class, 'index']);
+Route::get('/', [TweetController::class, 'index']);  
 
-// ログインしたユーザーのみがアクセスできる新規投稿のルート
-Route::middleware('auth')->group(function () {                                 
-      Route::get('tweets/create', [TweetController::class, 'create'])->name('tweet.create');
-      Route::post('store', [TweetController::class, 'store'])->name('tweet.store');
-  });
 
-// 編集と削除のルート
+// indexとshowは全ユーザーがアクセス可能、create, store, edit, update, destroyは認証ユーザーのみアクセス可能にするため、ルートを分けて定義。
+Route::resource('tweets', TweetController::class)->only(['index', 'show']);
+                                                                                     
 Route::middleware('auth')->group(function () {
-    Route::get('tweets/{id}/edit', [TweetController::class, 'edit'])->name('tweet.edit');
-    Route::put('tweets/{id}', [TweetController::class, 'update']);
-    Route::delete('tweets/{id}', [TweetController::class, 'destroy']);
-});
+    Route::resource('tweets', TweetController::class)->except(['index', 'show']);  
+});             
 
 
 // マイページのルート

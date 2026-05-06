@@ -15,11 +15,13 @@ class TweetController extends Controller
         return view('tweets.index', compact('tweets'));
     }
 
+
     // 新規投稿画面の表示
     public function create()
     {
         return view('tweets.create');
     }
+
 
     // 新規投稿の保存
     public function store(Request $request)
@@ -37,6 +39,7 @@ class TweetController extends Controller
         return redirect('/');
     }
 
+
     // 編集画面の表示
     public function edit($id)
     {
@@ -47,6 +50,7 @@ class TweetController extends Controller
 
         return view('tweets.edit', compact('tweet'));
     }
+
 
     // 編集内容の保存
     public function update(Request $request, $id)
@@ -66,7 +70,8 @@ class TweetController extends Controller
         ]);
 
         return redirect('/');
-}
+    }
+
 
     // 投稿の削除
     public function destroy($id)
@@ -78,5 +83,14 @@ class TweetController extends Controller
 
         $tweet->delete();
         return redirect('/');
+    }
+
+
+    // 投稿の詳細画面の表示
+    public function show($id)
+    {
+        $tweet = Tweet::find($id);
+        $comments = $tweet->comments;  // 投稿されたコメントを取得
+        return view('tweets.show', compact('tweet', 'comments'));
     }
 }
