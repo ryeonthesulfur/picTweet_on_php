@@ -15,6 +15,13 @@ Route::middleware('auth')->group(function () {
       Route::post('store', [TweetController::class, 'store'])->name('tweet.store');
   });
 
+// 編集と削除のルート
+Route::middleware('auth')->group(function () {
+    Route::get('tweets/{id}/edit', [TweetController::class, 'edit'])->name('tweet.edit');
+    Route::put('tweets/{id}', [TweetController::class, 'update']);
+    Route::delete('tweets/{id}', [TweetController::class, 'destroy']);
+});
+
 
 // マイページのルート
 Route::get('users/{id}', [UserController::class, 'show'])->name('user.show');   // ユーザのIDをURLパラメータとして受け取り、UserControllerのshowメソッドにルーティングする記述
