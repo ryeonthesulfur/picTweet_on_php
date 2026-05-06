@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    // mass assignmentを許可する属性
+    protected $fillable = ['text', 'user_id', 'tweet_id'];
+
     // コメントは1人のユーザに属する
     public function user()
     {
