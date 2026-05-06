@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,6 +14,10 @@ Route::middleware('auth')->group(function () {
       Route::get('tweets/create', [TweetController::class, 'create'])->name('tweet.create');
       Route::post('store', [TweetController::class, 'store'])->name('tweet.store');
   });
+
+
+// マイページのルート
+Route::get('users/{id}', [UserController::class, 'show'])->name('user.show');   // ユーザのIDをURLパラメータとして受け取り、UserControllerのshowメソッドにルーティングする記述
 
 
 // 認証が必要なルート
