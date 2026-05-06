@@ -15,6 +15,14 @@ class TweetController extends Controller
         return view('tweets.index', compact('tweets'));
     }
 
+    // 検索機能の実装
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $tweets = Tweet::where('text', 'LIKE', '%' .$keyword. '%')->get();
+        return view('tweets.search', compact('tweets', 'keyword'));
+    }
+
 
     // 新規投稿画面の表示
     public function create()
