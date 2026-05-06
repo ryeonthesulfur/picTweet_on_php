@@ -15,11 +15,13 @@ Route::get('/tweets/search', [TweetController::class, 'search'])->name('tweets.s
 
 
 // indexとshowは全ユーザーがアクセス可能、create, store, edit, update, destroyは認証ユーザーのみアクセス可能にするため、ルートを分けて定義。
-Route::resource('tweets', TweetController::class)->only(['index', 'show']);
-                                                                                     
 Route::middleware('auth')->group(function () {
     Route::resource('tweets', TweetController::class)->except(['index', 'show']);  
 });             
+
+Route::resource('tweets', TweetController::class)->only(['index', 'show']);
+                                                                                     
+
 
 
 // コメント投稿のルート
