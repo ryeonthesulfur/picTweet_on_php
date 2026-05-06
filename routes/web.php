@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 // トップ画面のルート
@@ -15,6 +16,10 @@ Route::resource('tweets', TweetController::class)->only(['index', 'show']);
 Route::middleware('auth')->group(function () {
     Route::resource('tweets', TweetController::class)->except(['index', 'show']);  
 });             
+
+
+// コメント投稿のルート
+Route::post('tweets/{id}/comments', [CommentController::class, 'addComment'])->name('tweets.addComment');
 
 
 // マイページのルート
