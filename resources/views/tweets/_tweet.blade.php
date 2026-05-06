@@ -9,11 +9,11 @@
                   <a href="/tweets/{{ $tweet->id }}/edit">編集</a>                
               </li>                                                               
               <li>
-                  <form action="/tweets/{{ $tweet->id }}" method="POST">          
+                  <form action="/tweets/{{ $tweet->id }}" method="POST" id="delete-form-{{ $tweet->id }}" style="display: none;">          
                       @csrf                   
                       @method('DELETE')                                           
-                      <input type="submit" value="削除">
                   </form>                                                         
+                  <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $tweet->id }}').submit();">削除</a>
               </li>                       
               @endif                                                              
           </ul>                                                                   
